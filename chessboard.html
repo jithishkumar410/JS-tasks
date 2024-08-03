@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Board Generator</title>
+</head>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1.5rem;
+    }
+    .box-1{
+        background-color: black;
+        width: 3rem;
+        height: 3rem;
+    }
+    .box-2{
+        background-color: white;
+        width: 3rem;
+        height: 3rem;
+    }
+    #board{
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        overflow: auto;
+        
+    }
+    .row{
+        display: flex;
+        border:1px solid black;
+        
+    }
+    input{
+        border-radius: 5px;
+        padding: 0.5rem;
+        
+    }
+    .input{
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+        flex-direction: column;
+    }
+    label{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <div class="input">
+        <label for="count">Enter The Grid Size</label>
+        <input type="number" id="count" name="count" min="2">
+        <button id="btn">Generate</button>
+    </div>
+    <div id="board">
+
+    </div>
+</body>
+<script>
+    let num = document.getElementById('count')
+    let btn = document.getElementById('btn')
+    let board = document.getElementById('board')
+    function generator(){
+        html=``
+        for(let i=0;i<num.value;i++){   
+            
+             html+=`<div class="row">`
+            for(let j=0;j<num.value;j++){
+                if(i%2==0){
+                    if(j%2==0){
+                        html+=`<div class="box-${1}""></div>`
+                    }
+                    else{
+                        html+=`<div class="box-${2}"></div>`
+                    } 
+                }
+                else{
+                    if(j%2==1){
+                        html+=`<div class="box-${1}""></div>`
+                    }
+                    else{
+                        html+=`<div class="box-${2}"></div>`
+                    }    
+                }
+                
+            }
+             html+=`</div>`
+        }
+        console.log(html)
+        board.innerHTML=html
+    }
+
+    btn.addEventListener('click',()=>{
+        generator()
+    })
+
+
+</script>
+</html>
